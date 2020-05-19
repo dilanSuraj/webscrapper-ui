@@ -12,6 +12,12 @@ const tagOptions = [
   { key: 'header', text: 'header', value: 'header' },
   { key: 'div', text: 'div', value: 'div' },
   { key: 'p', text: 'p', value: 'p' },
+  { key: 'tr', text: 'tr', value: 'tr' },
+  { key: 'h1', text: 'h1', value: 'h1' },
+  { key: 'h2', text: 'h2', value: 'h2' },
+  { key: 'h3', text: 'h3', value: 'h3' },
+  { key: 'h4', text: 'h4', value: 'h4' },
+  { key: 'h5', text: 'h5', value: 'h5' },
 ]
 
 const tagTypeOptions = [
