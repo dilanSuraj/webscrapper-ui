@@ -47,10 +47,10 @@ class App extends Component {
   onSubmit = async (e) => {
     e.preventDefault();
     let scrapeObj = {
-      url: "https://www.scoi.com/about-us/patient-reviews?page=1",
+      url: "",
       tagName: "span",
       tagType: "class",
-      tagTypeName: "field-content"
+      tagTypeName: ""
     }
     await axios.post(`https://flask-scrapper-api.herokuapp.com/scrape`,
       scrapeObj,
