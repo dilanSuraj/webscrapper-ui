@@ -47,10 +47,10 @@ class App extends Component {
   onSubmit = async (e) => {
     e.preventDefault();
     let scrapeObj = {
-      url: "",
-      tagName: "span",
-      tagType: "class",
-      tagTypeName: ""
+      url: this.state.url,
+      tagName: this.state.tagName,
+      tagType: this.state.tagType,
+      tagTypeName: this.state.tagTypeName
     }
     await axios.post(`https://flask-scrapper-api.herokuapp.com/scrape`,
       scrapeObj,
