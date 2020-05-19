@@ -46,7 +46,7 @@ class App extends Component {
       tagType: "class",
       tagTypeName: "field-content"
     }
-    await axios.post(`http://127.0.0.1:5000/scrape`,
+    await axios.post(`https://flask-scrapper-api.herokuapp.com/scrape`,
       scrapeObj,
       {
         "Content-Type": "application/json"
