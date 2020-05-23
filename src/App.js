@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Form, Card, CardContent, Container, CardHeader, Accordion, Icon, Label, TextArea } from 'semantic-ui-react'
+import { Form, Card, CardContent, Container, CardHeader, Accordion, Icon, Label, TextArea, Button } from 'semantic-ui-react'
 import bgImg from './assets/img/bg.jpg'
 import axios from 'axios';
 import swal from 'sweetalert2';
+import CsvDownloader from 'react-csv-downloader';
 
 const tagOptions = [
   { key: 'span', text: 'span', value: 'span' },
@@ -29,6 +30,11 @@ class App extends Component {
   state = {
     activeIndex: 0,
     url: '',
+    csvColumns: [{
+      id: "data",
+      displayName: "Data"
+    }],
+    csvRows: [],
     tagName: tagOptions[0].value,
     tagType: tagTypeOptions[0].value,
     tagTypeName: '',
@@ -58,9 +64,13 @@ class App extends Component {
         "Content-Type": "application/json"
       }
     ).then(res => {
-      console.log(res)
+      let rows = [{
+        "data": res.data
+      }]
+
       this.setState({
         scrapedData: res.data,
+        csvRows: rows,
         isScraped: true
       })
       swal.fire({
@@ -191,10 +201,18 @@ class App extends Component {
             {
               this.state.isScraped
                 ?
-                <TextArea placeholder='Tell us more' value={this.state.scrapedData} style={{
-                  "minHeight": "100px",
-                  "minWidth": "45vw",
-                }} />
+                <>
+                  <TextArea placeholder='Tell us more' value={this.state.scrapedData} style={{
+                    "minHeight": "100px",
+                    "minWidth": "45vw",
+                  }} />
+
+                  <CsvDownloader filename="scrapped_data"
+                    separator=","
+                    noHeader={false}
+                    columns={this.state.csvColumns}
+                    datas={this.state.csvRows}>
+                    <Button outline color="primary" > <span />Download Scrapped Data</Button></CsvDownloader></>
                 :
                 null
             }
